@@ -24,7 +24,7 @@ resource "digitalocean_droplet" "tf_vm" {
   ssh_keys             = [digitalocean_ssh_key.my_key.fingerprint]
   tags                 = [digitalocean_tag.my_tag.name, digitalocean_tag.my_email.name]
   provisioner "remote-exec" {
-    inline = ["sudo yum install epel-release -y", "echo Done!"]
+    inline = ["yum install epel-release -y", "yum install htop -y", "yum install vim -y", "echo Done!"]
 
     connection {
       host        = self.ipv4_address

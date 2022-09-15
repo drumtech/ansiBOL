@@ -1,0 +1,13 @@
+server { 
+	listen {{ ansible_ssh_host  }}:81;
+        server_name  {{ virtual_domain_second }} www.{{ virtual_domain_second }};
+        root /var/www/{{ virtual_domain_second }};
+
+        access_log /var/log/nginx/{{ virtual_domain_second }}_access_log;
+        error_log /var/log/nginx/{{ virtual_domain_second }}_error_log;
+	
+        location / {
+		add_header Content-Type text/plain;
+		return 200 "Welcome from {{ virtual_domain_second }}";
+	}
+}

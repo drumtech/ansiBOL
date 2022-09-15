@@ -1,0 +1,7 @@
+---
+nginx_user              : nginx
+worker_processes        : auto
+worker_connections      : 2048
+client_max_body_size    : 512M
+virtual_domain_first    : domain1.example.com
+virtual_domain_second   : domain2.example.com

@@ -1,0 +1,4 @@
+ssh_private = "YOUR_SSH_PRIVATE_KEY_PATH_TO_IT_OR_IT_BODY"
+ssh_key = "YOUR_SSH_PUB_PATH_TO_IT_OR_IT_BODY"
+do_token = "YOUR_TOKEN_FOR_DO"
+email = "YOUR_EMAIL(instead @ -> at | instead . -> _)"
