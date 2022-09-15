@@ -1,0 +1,43 @@
+---
+- name: Install nginx
+  hosts: [PROD_WEB]
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Install Nginx
+    apt:
+      name: nginx
+      state: present
+  - name: replacement nginx.conf
+    template:
+      src=nginx.conf.j2
+      dest=/etc/nginx/nginx.conf
+  - name: Start Nginx
+    service:
+      name: nginx
+      state: started
+  - name: Enable service nginx
+    systemd:
+      name: nginx
+      enabled: yes
+  - name: Added config for virtualhost
+    template:
+      src: '{{ item }}'
+      dest: '{{ nginx_conf_dir}}{{item|replace(".j2", "") }}'
+    loop:
+      - first_vhost.conf.j2
+      - second_vhost.conf.j2
+  - name: Make symlink
+    file:
+      src: '{{ item }}'
+      dest: '{{ nginx_symlink_dir }}{{ item|replace("/etc/nginx/sites-available/", "") }}'
+      state: link
+    loop:
+      - '{{nginx_conf_dir}}first_vhost.conf'
+      - '{{nginx_conf_dir}}second_vhost.conf'
+    notify:
+    - Reload Nginx
+  handlers:
+  - name: Reload Nginx
+    service: name=nginx state=reloaded

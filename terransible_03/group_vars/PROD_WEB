@@ -1,0 +1,9 @@
+---
+nginx_user              : www-data
+worker_processes        : auto
+worker_connections      : 2048
+client_max_body_size    : 512M
+virtual_domain_first    : domain1.example.com
+virtual_domain_second   : domain2.example.com
+nginx_symlink_dir       : /etc/nginx/sites-enabled/
+nginx_conf_dir          : /etc/nginx/sites-available/
