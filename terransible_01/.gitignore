@@ -1,5 +1,0 @@
-terraform.tfvars
-.terraform.lock.hcl
-.terraform/
-terraform.tfstate
-hosts.yaml
